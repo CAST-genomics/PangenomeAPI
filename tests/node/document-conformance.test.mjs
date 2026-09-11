@@ -74,9 +74,6 @@ test("no emulated document is constructed, so it retains nothing", async () => {
   // completion and produces a document `pgb` can read, and no window and no
   // document global exist on the far side of it — the render did not stand one
   // up, and did not tear one down either, because there was never one to tear.
-  //
-  // `perf/rss-split.mjs` is the same claim in megabytes, over a region large
-  // enough for the number to mean something.
   const { renderTubeMap } = await import("../../seqtubemap/render.mjs");
   const { document, bandData } = await renderTubeMap({
     inputFile: join(repoRoot, "tests", "fixtures", "tiny-vg.json"),

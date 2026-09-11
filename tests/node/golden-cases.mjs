@@ -8,7 +8,7 @@ import { tmpdir } from "node:os";
 import { join, dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { generate } from "../../perf/gen-vg-json.mjs";
+import { generate } from "./gen-vg-json.mjs";
 
 export const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const goldenDir = join(repoRoot, "tests", "fixtures", "tubemap-golden");

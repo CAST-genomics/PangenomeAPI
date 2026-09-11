@@ -1,4 +1,4 @@
-// A strand's identity, as CONTEXT.md defines it.
+// A strand's identity (README, "Terms").
 //
 // The triple `sample#haplotype#contig` is the whole of it. `vg` appends its own
 // phase block and subrange — `sample#haplotype#contig#0[9659985-9661740]` — and

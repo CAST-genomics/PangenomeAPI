@@ -70,7 +70,7 @@ export async function renderTubeMap({
 
   create({
     // The layout's own vocabulary: its `nodes` are this codebase's segments,
-    // and its `tracks` are its strands (CONTEXT.md).
+    // and its `tracks` are its strands (README, "Terms").
     nodes: segments,
     tracks: strands,
     reads: null,

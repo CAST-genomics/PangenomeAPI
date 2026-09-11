@@ -10,8 +10,8 @@
 //
 // **Why band data and not a document.** These tests were written earlier against
 // a recaptured SVG from the server and skipped waiting for one to appear. That
-// was the wrong artifact to wait for: `docs/adr/0001-additive-band-format.md`
-// makes the band data canonical and the document derived from it, so pinning the
+// was the wrong artifact to wait for: the band data is canonical and the
+// document is derived from it, so pinning the
 // document buys a weaker guarantee at ten times the size — 13.19 MB of XML against
 // 1.04 MB of gzipped numbers for the largest fixture. Since #22 that is literally
 // true of the running code: the document is written from this data, so the

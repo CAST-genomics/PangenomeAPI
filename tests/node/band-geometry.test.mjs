@@ -138,7 +138,7 @@ test("a band whose width would not survive being written down fails loudly", () 
 
 test("a vertical connector is not a band, and says so", () => {
   // The reversal shapes are the one place the six-value grammar does not reach,
-  // and CONTEXT.md's **band** — "one strand crossing one x-interval" — is not
+  // and a **band** — "one strand crossing one x-interval" (README, "Terms") — is not
   // what either of them is. A connector is a tall rect, 19 and 39 units in the
   // synthetic inversion below, so it carries its own height and is a kind of its
   // own rather than a band of an impossible thickness. `pgb` cannot read either
@@ -214,8 +214,8 @@ function assertRecoveredExactly(document, bandData) {
   // which is the wire #24 puts them on.
   //
   // On its own this line proves little: the document *is* emitted from the band
-  // data, so comparing a re-emission against it is the degenerating oracle ADR
-  // `0002` warns about. What it adds is the round trip through JSON, and what
+  // data, so comparing a re-emission against it checks the emitter against
+  // itself. What it adds is the round trip through JSON, and what
   // carries the real weight is above it — the golden bytes for the synthetic
   // cases, and `real-subgraph.band.test.mjs` for the five real ones, which
   // rebuilds each document from the baseline on disk rather than from the render

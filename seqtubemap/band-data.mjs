@@ -3,7 +3,7 @@
 //
 // The layout used to bind those numbers to elements in an emulated browser
 // document, and that document was what `/seqtubemap` returned — 93.7% of the
-// render's retained memory (docs/adr/0001-additive-band-format.md), existing
+// render's retained memory, existing
 // only so the result could be serialized to text and parsed straight back into
 // numbers by the client. #21 made the numbers reachable through this collector;
 // #22 deleted the document and pointed `emit-document.mjs` at the collector
@@ -37,8 +37,7 @@
 //             element, in document order, each an element name and its
 //             attributes as an ordered list of pairs, because attribute order
 //             is part of the bytes. Production documents contain none of these:
-//             a real subgraph carries no reference offset, so it gets no ruler
-//             (docs/adr/0001-additive-band-format.md).
+//             a real subgraph carries no reference offset, so it gets no ruler.
 //   document  the picture's dimensions, including the viewBox string.
 //
 // A band is six numbers and a strand id.

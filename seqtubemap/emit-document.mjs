@@ -4,9 +4,9 @@
 // band's geometry, colour, strand id and strand name; it used to bind all of
 // that to elements in a jsdom document, which existed only so the result could
 // be serialized to text and parsed straight back into numbers by the client.
-// That document was 93.7% of the render's retained memory
-// (docs/adr/0001-additive-band-format.md). Now the same numbers are collected as
-// data (band-data.mjs) and this module turns them into the bytes.
+// That document was 93.7% of the render's retained memory. Now the same
+// numbers are collected as data (band-data.mjs) and this module turns them into
+// the bytes.
 //
 // It is written *against the data*, with no access to the layout: everything it
 // emits comes from the strand table, the bands, the segment boxes, the overlays

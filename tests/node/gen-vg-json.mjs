@@ -1,4 +1,4 @@
-// Deterministic synthetic vg-JSON generator for tube map perf work.
+// Deterministic synthetic vg-JSON generator for the golden tube map fixtures.
 // Emits the same shape `vg view -j` produces, which is all tubemap.js reads:
 //   { node: [{id, sequence}], path: [{name, freq, mapping:[{position:{node_id,is_reverse}}]}] }
 //

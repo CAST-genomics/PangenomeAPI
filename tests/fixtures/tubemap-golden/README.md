@@ -71,7 +71,7 @@ being applied fails loudly rather than just re-baselining.
 ## These are synthetic, and reproducible
 
 The two inputs come from the seeded generator in
-[`perf/gen-vg-json.mjs`](../../../perf/gen-vg-json.mjs) — a reference spine with
+[`tests/node/gen-vg-json.mjs`](../../node/gen-vg-json.mjs) — a reference spine with
 bubbles hanging off it and haplotypes choosing an allele at each. The seeds and
 parameters live in [`tests/node/golden-cases.mjs`](../../node/golden-cases.mjs),
 and the test re-derives each input from them and checks it against the committed
@@ -92,8 +92,7 @@ the synthetic cases are not enough — are pinned by
 Not a golden document, and nothing lives in this directory for them. Two tests here used to
 be written against a recaptured SVG from the server and skipped with a stated reason
 waiting for one to appear at `real/<name>.svg`. That was the wrong artifact to wait for:
-[`docs/adr/0001`](../../../docs/adr/0001-additive-band-format.md) makes the band data
-canonical and the document derived from it, so a baselined document pins the derived
+the band data is canonical and the document derived from it, so a baselined document pins the derived
 artifact — a weaker guarantee, at 35.84 MB across the five against 2.33 MB of gzipped
 numbers. The documents are still checked, but as something *rebuilt from* the baseline and
 compared in full, which is a stronger claim than byte-identity against a capture.

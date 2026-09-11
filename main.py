@@ -96,7 +96,7 @@ class SeqTubeMapFormat(NamedTuple):
 # `svg` is the default and is what the endpoint has always returned, byte for
 # byte: this parameter is additive, so the two repositories never have to deploy
 # together and the document stays available as the oracle the band payload is
-# checked against (docs/adr/0001-additive-band-format.md).
+# checked against.
 #
 # `bands` is the same render said as numbers — a JSON header carrying the
 # dimensions, the strand table and the segment boxes, and a binary body carrying
