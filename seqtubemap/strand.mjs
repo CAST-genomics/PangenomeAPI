@@ -1,4 +1,21 @@
-// A strand's identity, as CONTEXT.md defines it.
+// A strand's identity.
+//
+// The words the tube map code and its tests use, defined once here:
+//
+//   segment       a vertex *inside* a sequence tube map, one stretch of
+//                 sequence in the minigraph-cactus subgraph. Not a minigraph
+//                 node, the coarse vertex `pgb` draws and the `minigraphnode`
+//                 parameter names. `tubemap.js` and `vg` call segments "nodes".
+//   strand        one haplotype's route through a tube map, identified by the
+//                 triple `sample#haplotype#contig`. A haplotype fragmented
+//                 across a region contributes several GFA `W` lines but is
+//                 still one strand. `tubemap.js` calls strands "tracks"; GFA
+//                 calls them walks or paths.
+//   pivot strand  the strand the layout arranges every other strand around
+//                 (`tracks[0]`). GRCh38 where present. Changing it changes the
+//                 picture, not the data.
+//   band          the atomic drawable: one strand crossing one x-interval. A
+//                 strand is made of many bands.
 //
 // The triple `sample#haplotype#contig` is the whole of it. `vg` appends its own
 // phase block and subrange — `sample#haplotype#contig#0[9659985-9661740]` — and

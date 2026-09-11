@@ -7,8 +7,7 @@ The endpoint's other format is a **sequence tube map** as an SVG document: every
 **band** drawn as an element carrying a drawing command, its **strand**'s colour,
 its strand's name and its strand's ancestry placement — the per-strand values
 re-serialized once per band, which is 41–47% of the response, and the geometry
-as text the client parses back into numbers with a regular expression
-([ADR 0001](adr/0001-additive-band-format.md)).
+as text the client parses back into numbers with a regular expression.
 
 This format says each per-strand value once, in a table the bands point at, and
 says the geometry as the numbers themselves, laid out so a client can build
@@ -265,7 +264,8 @@ response.
 ## Measured
 
 Five real subgraphs, rendered through `renderTubeMap` and encoded both ways,
-2026-09-01. `perf/band-payload-sizes.mjs` reproduces the table.
+2026-09-01. `perf/band-payload-sizes.mjs`, kept at the tag
+`seqtubemap-docs-archive`, reproduces the table.
 
 | region | span | strands | bands | SVG | band payload | ratio |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -275,7 +275,7 @@ Five real subgraphs, rendered through `renderTubeMap` and encoded both ways,
 | chr1:25,301,271-25,309,238 | 8.0 kb | 383 | 35,020 | 9.97 MB | **1.10 MB** | 9.0× |
 | chr1:25,331,646-25,335,796 | 4.2 kb | 1,201 | 44,795 | 12.58 MB | 1.35 MB | 9.3× |
 
-ADR 0001 projected "roughly 1.5 MB against the current 10.07 MB" at the 10 kb
+The design projected "roughly 1.5 MB against the current 10.07 MB" at the 10 kb
 region from the band count and the record width. Measured on the 8.0 kb subgraph
 that stands for it: **1.10 MB against 9.97 MB**. The projection was right and
 slightly pessimistic.

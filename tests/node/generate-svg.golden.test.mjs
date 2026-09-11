@@ -166,8 +166,8 @@ function describeDifference(actual, expected, golden) {
 
 // The five real subgraphs are covered next door, in
 // `real-subgraph.band.test.mjs`. They are pinned by their **band data** rather
-// than by a document: `docs/adr/0001-additive-band-format.md` makes the band data
-// canonical and the document derived from it, so a baselined document would buy a
+// than by a document: the band data is canonical and the document is derived
+// from it, so a baselined document would buy a
 // weaker guarantee at ten times the size. That test rebuilds each document from
 // the baseline and checks it in full, which is the same claim this file makes
 // about the synthetic cases, made where the layout actually costs something.

@@ -1,7 +1,7 @@
 // The order the layout arranges strands in, and the invariant that order carries.
 //
 // `reorderTracksForLayout` decides which strand becomes the **pivot strand**
-// (CONTEXT.md) — `createTubeMap` straightens `tracks[0]` and orients everything
+// (seqtubemap/strand.mjs) — `createTubeMap` straightens `tracks[0]` and orients everything
 // else against it — so this function decides the arrangement of every picture
 // /seqtubemap returns. Before this file existed it was a one-line sort by
 // sequence length whose comment claimed three properties it did not implement:

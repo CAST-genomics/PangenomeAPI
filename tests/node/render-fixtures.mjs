@@ -13,7 +13,7 @@
 //
 // Why it exists: `pgb` can load a static document, so these are what you point a
 // dev harness at when the live server is unavailable or its deploy is behind
-// `main` — which, at the time of writing, it is (docs/releasing.md). Confirming
+// `main`. Confirming
 // a document *renders* is the one thing the byte comparisons in the test suite
 // cannot do.
 //

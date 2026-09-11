@@ -15,7 +15,7 @@ ordered walk, and the `S` lines give every segment's length, so the coordinate
 of each segment along each haplotype falls out by accumulation. Feed the rebuilt
 derivative back in and the same `W` lines must come out.
 
-That makes this a genuine end-to-end pin on real data, in CI, rather than a
+That makes this a genuine end-to-end pin on real data rather than a
 comparison of the new code against a remembered copy of the old.
 
 **What the rebuilt derivative is not.** Column 5, the repeat placements, is

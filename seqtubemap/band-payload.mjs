@@ -2,11 +2,10 @@
 //
 // The SVG document says every per-strand value once per band — a colour, a name
 // and a PCLAI placement re-serialized on each of the 55,053 bands a real
-// subgraph draws, which is 41-47% of every response
-// (docs/adr/0001-additive-band-format.md) — and says the geometry as a drawing
-// command the client parses back into numbers with a regular expression. This
-// format says each per-strand value once, in a table the bands point at, and
-// says the geometry as the numbers themselves, laid out so that a client can
+// subgraph draws, which is 41-47% of every response — and says the geometry as
+// a drawing command the client parses back into numbers with a regular
+// expression. This format says each per-strand value once, in a table the bands
+// point at, and says the geometry as the numbers themselves, laid out so that a client can
 // build a typed-array view over the bytes it received and hand that straight to
 // the GPU. No parse step, no regular expression, no megabytes of text.
 //
@@ -160,7 +159,7 @@ export function encodeBandPayload(bandData) {
     strands: strands.map(strandRow),
     segments,
     // Empty in every production document — a real subgraph carries no reference
-    // offset, so it gets no ruler and no labels (ADR 0001). Carried anyway,
+    // offset, so it gets no ruler and no labels. Carried anyway,
     // because a payload that silently dropped part of the picture would not be
     // the canonical description of it.
     overlays,

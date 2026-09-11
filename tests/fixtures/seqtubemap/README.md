@@ -13,7 +13,7 @@ the `.gfa` in, expect the golden document out. That is not what they turned out 
 the reason is worth reading before relying on them: see
 [How these relate to `pgb`'s golden documents](#how-these-relate-to-pgbs-golden-documents--checked-2026-08-28)
 below. The short version is that the inputs are sound and the goldens are snapshots of
-three different states of this pipeline, so the pin that runs in CI is self-baselined here
+three different states of this pipeline, so the pin the test suite runs is self-baselined here
 rather than borrowed from the other repository.
 
 ## Provenance
@@ -51,8 +51,7 @@ differ only in the 8.0 kb file (383 walks, 378 strands) and the 4.2 kb one (1,20
 ## Which golden document each one produces
 
 Matched on strand count, which is a property of the region and is not constant — 369, 378,
-463, 464 across this set. All five agree with the byte census in
-[§8 of the findings](../../../docs/perf/seqtubemap-latency.md).
+463, 464 across this set.
 
 | this fixture | `pgb` golden document | output size | amplification |
 | --- | --- | ---: | ---: |
@@ -63,9 +62,9 @@ Matched on strand count, which is a property of the region and is not constant �
 | chr1:25,331,646+ (4.2 kb) | node 5520 | 13.56 MB | 20.5× |
 
 *amplification* is golden output ÷ this file. The last two sit at `pgb`'s fetch ceiling, so
-they are the two that matter most for increment **B** — and the 4.2 kb region turning 694 KB
-of graph into 13.56 MB of XML is the whole argument of
-[ADR 0001](../../../docs/adr/0001-additive-band-format.md) in one row.
+they are the two that matter most — and the 4.2 kb region turning 694 KB of graph into
+13.56 MB of XML is the whole argument for the band payload
+([`docs/band-format.md`](../../../docs/band-format.md)) in one row.
 
 ## Standing in for the graph at the cache path
 
@@ -90,12 +89,14 @@ node seqtubemap/generate-svg.mjs \
 
 **These were not produced by `vg`.** The server reaches this shape as
 `vg convert -g | vg view -j` (`main.py:396-421`), and both binaries are Linux-only in
-practice. These were produced instead by [`perf/gfa-to-vg-json.mjs`](../../../perf/gfa-to-vg-json.mjs),
-which reads the GFA directly. Regenerate them with:
+practice. These were produced instead by `perf/gfa-to-vg-json.mjs`,
+which reads the GFA directly. That script is no longer on `main`; it is kept at the tag
+`seqtubemap-docs-archive`. Regenerate them with:
 
 ```
+git show seqtubemap-docs-archive:perf/gfa-to-vg-json.mjs > /tmp/gfa-to-vg-json.mjs
 for f in tests/fixtures/seqtubemap/*.gfa; do
-  node perf/gfa-to-vg-json.mjs "$f" "${f%.gfa}.json"
+  node /tmp/gfa-to-vg-json.mjs "$f" "${f%.gfa}.json"
 done
 ```
 
@@ -138,7 +139,8 @@ the generator writes every entry onto the elements it draws — the colour as `c
 the placement as `pclaiX`, `pclaiY` and `pclaiScore`. That is what these files are:
 
 ```
-node perf/pclai-from-document.mjs <pgb-golden.svg> tests/fixtures/seqtubemap/<name>.pclai.json
+git show seqtubemap-docs-archive:perf/pclai-from-document.mjs > /tmp/pclai-from-document.mjs
+node /tmp/pclai-from-document.mjs <pgb-golden.svg> tests/fixtures/seqtubemap/<name>.pclai.json
 ```
 
 recovered on 2026-08-28 from the five golden documents in `pgb`'s
@@ -179,9 +181,8 @@ against. `tests/node/real-subgraph.band.test.mjs` renders all three inputs, comp
 band data to the baseline, and then rebuilds the document from that band data and checks it
 in full.
 
-Band data rather than a document because
-[`docs/adr/0001`](../../../docs/adr/0001-additive-band-format.md) makes the band data
-canonical and the document derived from it. A baselined document would pin the derived
+Band data rather than a document because the band data is canonical and the document is
+derived from it. A baselined document would pin the derived
 artifact — a weaker guarantee, at ten times the size — and would have to be captured from a
 server, which is what the two tests at the fetch ceiling spent their skipped life waiting
 for.
@@ -261,8 +262,8 @@ contig. All three forms in the goldens are that one rule seen at different times
 
 `truncateTrackName` used to strip the tail inside `vgExtractTracks` and no longer does
 (`0f69615`). The wire now carries `vg`'s spelling verbatim and the codebase truncates only
-where it looks something up — see **strand** in [`CONTEXT.md`](../../../CONTEXT.md).
-**Do not reach for `perf/gfa-to-vg-json.mjs --names=bare` to "fix" this.** On the 90 bp
+where it looks something up — see **strand** in [`seqtubemap/strand.mjs`](../../../seqtubemap/strand.mjs).
+**Do not reach for `gfa-to-vg-json.mjs --names=bare` to "fix" this.** On the 90 bp
 fixture the suffixed names are the ones that match; bare names would break a pair that
 works.
 
@@ -283,13 +284,12 @@ landed, waiting on a recaptured document that was never coming. They are now pin
 the other three — by band data baselined here, from all three of their own inputs.
 
 **These goldens are not this repository's oracle.** They were captured from `pgb`, at
-various dates, from at least three different states of this pipeline — and
-`docs/adr/0001-additive-band-format.md` makes the band data canonical and the document
-derived. The table above is a dated cross-check that the two repositories agreed at a
+various dates, from at least three different states of this pipeline — and the band data
+is canonical and the document derived. The table above is a dated cross-check that the two repositories agreed at a
 point in time, which is the useful thing a captured document can say — and they said one
 more, which #41 took them up on: the PCLAI colour scheme each region was rendered with is
 written on their elements, and is now recovered into the `.pclai.json` files above. The pin
-that runs in CI is self-baselined band data in this repository.
+the test suite runs is self-baselined band data in this repository.
 
 ## A note on `.gitignore`
 
