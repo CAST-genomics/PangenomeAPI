@@ -38,7 +38,7 @@ from fastapi.testclient import TestClient
 STALL_SECONDS = 2.0
 
 # The fast request does no work at all, so anything approaching the stall is a
-# request that waited. Loose enough to survive a loaded CI machine.
+# request that waited. Loose enough to survive a loaded machine.
 FAST_LIMIT_SECONDS = STALL_SECONDS / 2
 
 # `/json` rejects an unknown graph type before touching any graph data

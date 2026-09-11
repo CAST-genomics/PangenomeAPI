@@ -13,7 +13,7 @@ the `.gfa` in, expect the golden document out. That is not what they turned out 
 the reason is worth reading before relying on them: see
 [How these relate to `pgb`'s golden documents](#how-these-relate-to-pgbs-golden-documents--checked-2026-08-28)
 below. The short version is that the inputs are sound and the goldens are snapshots of
-three different states of this pipeline, so the pin that runs in CI is self-baselined here
+three different states of this pipeline, so the pin the test suite runs is self-baselined here
 rather than borrowed from the other repository.
 
 ## Provenance
@@ -262,7 +262,7 @@ contig. All three forms in the goldens are that one rule seen at different times
 
 `truncateTrackName` used to strip the tail inside `vgExtractTracks` and no longer does
 (`0f69615`). The wire now carries `vg`'s spelling verbatim and the codebase truncates only
-where it looks something up — see **strand** in the top-level README's "Terms".
+where it looks something up — see **strand** in [`seqtubemap/strand.mjs`](../../../seqtubemap/strand.mjs).
 **Do not reach for `gfa-to-vg-json.mjs --names=bare` to "fix" this.** On the 90 bp
 fixture the suffixed names are the ones that match; bare names would break a pair that
 works.
@@ -289,7 +289,7 @@ is canonical and the document derived. The table above is a dated cross-check th
 point in time, which is the useful thing a captured document can say — and they said one
 more, which #41 took them up on: the PCLAI colour scheme each region was rendered with is
 written on their elements, and is now recovered into the `.pclai.json` files above. The pin
-that runs in CI is self-baselined band data in this repository.
+the test suite runs is self-baselined band data in this repository.
 
 ## A note on `.gitignore`
 

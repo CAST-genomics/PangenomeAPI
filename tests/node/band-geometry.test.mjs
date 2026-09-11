@@ -138,7 +138,7 @@ test("a band whose width would not survive being written down fails loudly", () 
 
 test("a vertical connector is not a band, and says so", () => {
   // The reversal shapes are the one place the six-value grammar does not reach,
-  // and a **band** — "one strand crossing one x-interval" (README, "Terms") — is not
+  // and a **band** — "one strand crossing one x-interval" (seqtubemap/strand.mjs) — is not
   // what either of them is. A connector is a tall rect, 19 and 39 units in the
   // synthetic inversion below, so it carries its own height and is a kind of its
   // own rather than a band of an impossible thickness. `pgb` cannot read either

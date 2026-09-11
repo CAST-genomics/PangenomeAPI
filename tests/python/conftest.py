@@ -17,9 +17,9 @@ has none of them. A test that wants one writes it with `walk_stand_in`.
 
 The panCT stub is the one stand-in that costs something: a machine without
 panCT boots the app against a placeholder `Region`, so a break in panCT's own
-interface would not show up there. CI installs panCT for real and sets
-`PANGENOME_TESTS_REQUIRE_ALL`, which turns every stand-in of that kind — and
-every skip — into a failure, so the gap is closed where it matters.
+interface would not show up there. Setting `PANGENOME_TESTS_REQUIRE_ALL=1`
+turns every stand-in of that kind — and every skip — into a failure, for a
+machine that has panCT and `vg` installed and should prove it.
 """
 
 import os
@@ -33,13 +33,14 @@ import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
-# CI sets this: there, a missing dependency is a broken workflow rather than a
-# developer machine without `vg`, and must fail the build instead of skipping.
+# Set to "1" where every dependency is meant to be present: a missing one is
+# then a broken setup rather than a machine without `vg`, and fails instead of
+# skipping.
 REQUIRE_ALL = os.environ.get("PANGENOME_TESTS_REQUIRE_ALL") == "1"
 
 
 def _skip_or_fail(reason: str) -> None:
-    """Skip for a missing dependency — unless CI said there must not be one."""
+    """Skip for a missing dependency — unless told there must not be one."""
     if REQUIRE_ALL:
         pytest.fail(f"{reason} (PANGENOME_TESTS_REQUIRE_ALL is set)")
     pytest.skip(reason)
@@ -116,8 +117,8 @@ def _install_panct_stub() -> None:
 def _panct_path() -> str | None:
     """Where panCT lives, or None if this machine does not have it.
 
-    Honours `PANCT_PATH` first, then the `tools.path` the README asks
-    developers to set.
+    Honours `PANCT_PATH` first, then the `tools.path` git config
+    (`git config --local tools.path <dir>`).
     """
     candidates = [os.environ.get("PANCT_PATH")]
     try:

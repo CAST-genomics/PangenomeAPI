@@ -33,8 +33,6 @@
  * layout that are arithmetic — colour interpolation and scales — and for
  * nothing that touches a document. Upstream's rendering half no longer exists
  * in this copy; the divergence is structural, not a patch set.
- * The README's "The vendored tube map layout" section records the same
- * provenance.
  *
  * The `eslint` directives below are upstream's, kept as upstream left them.
  * This repo runs no linter.
@@ -3868,7 +3866,7 @@ export function vgExtractTracks(vg, pathSourceTrackId, haplotypeSourceTrackID) {
   return result;
 }
 
-// The `sample#haplotype#contig` triple that identifies a strand (README, "Terms"),
+// The `sample#haplotype#contig` triple that identifies a strand (strand.mjs),
 // recovered from whatever `vg` spelled the path.
 //
 // `vg` appends a phase block and a subrange of its own — a strand can arrive as
@@ -3892,7 +3890,7 @@ const PIVOT_SAMPLES = ["GRCh38", "CHM13"];
 //     three positions in the 4.2 kb fixture. `createTubeMap` straightens `tracks[0]`
 //     and both switchNodeOrientation() and generateNodeOrder() arrange every
 //     other strand against it, so `tracks[0]` is the *pivot strand*
-//     (README, "Terms"). Left to `vg`'s emission order the pivot is whichever strand
+//     (strand.mjs). Left to `vg`'s emission order the pivot is whichever strand
 //     happened to be written first, which means the picture a reader sees moves
 //     for reasons invisible in the data.
 //
