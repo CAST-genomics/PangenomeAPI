@@ -340,7 +340,8 @@ class AdaptagramsGraph:
             "bp_scale": self._bp_scale,
             "total_bp": self._spine_bp_total,
             "total_width": self._spine_total_width,
-            "node_count": len(self._asm_order)
+            "node_count": len(self._asm_order),
+            "nodes": list(self._asm_order)
         }
 
     def _edge_rects(self, edge):
